@@ -14,6 +14,9 @@ const validateProfileInput = require('../../validation/profile');
 // Load User Model
 const User = require("../../models").User;
 
+// Load Skills
+const Skill = require("../../models").Skill;
+
 // @route GET api/profile/test
 // @desc Tests profile route
 // @access Public
@@ -140,6 +143,24 @@ router.get('/all', (req, res) => {
         res.status(404).json(err);
     })
 });
+
+// @route GET api/profile/skills
+// @desc Get all skills
+// @access Public
+router.get('/skills', (req, res) => {
+    const errors = {};
+    Skill.findAll().then(skills => {
+        if (!skills) {
+            errors.noskills = 'No skills found';
+            res.status(404).json(errors);
+        }
+        res.json(skills);
+    }).catch(err => {
+        console.log(err)
+        res.status(404).json(err);
+    })
+});
+
 
 
 // @route POST api/profile

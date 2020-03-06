@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       as: 'user'
     });
-    Profile.hasMany(models.Skill, {
+    Profile.belongsTo(models.Skill, {
       foreignKey: 'skill_id',
       as: 'skill'
     });
