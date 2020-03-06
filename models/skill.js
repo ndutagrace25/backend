@@ -4,10 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     skill_name: DataTypes.STRING
   }, {});
   Skill.associate = function (models) {
-    // Skill.belongsTo(models.Profile, {
-    //   foreignKey: 'skill_id',
-    //   as: 'skill'
-    // });
+
   };
   return Skill;
 };

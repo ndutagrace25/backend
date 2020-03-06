@@ -49,17 +49,24 @@ router.get(
                     "bio",
                     "experience",
                     "githubusername",
-                    [sequelize.col('user.name'), 'user_name']
+                    [sequelize.col('user.name'), 'user_name'],
+                    [sequelize.col('skill.skill_name'), 'skill_name']
                 ],
                 // raw: true,
                 where: {
                     user_id: req.user.id
                 },
                 include: [{
-                    model: User,
-                    as: 'user',
-                    atrributes: []
-                }]
+                        model: User,
+                        as: 'user',
+                        atrributes: []
+                    },
+                    {
+                        model: Skill,
+                        as: 'skill',
+                        atrributes: ['skill_name']
+                    }
+                ]
             })
             .then(profile => {
                 if (!profile) {
